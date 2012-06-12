@@ -479,8 +479,13 @@ function auth_quickaclcheck($id){
 /**
  * Returns the maximum rights a user has for
  * the given ID or its namespace
- *
+ * 
  * @author  Andreas Gohr <andi@splitbrain.org>
+ * 程序被完全修改以适应在ECP环境下使用，利用ECP的标准化权限控制方式实现权限的管理。
+ * 对于知识库：
+ *   基本的权限管理只涉板块，板块下的条目不需要作权限控制（目前），是否对条目实现更复杂的权限管理以后再考虑。
+ * 对于公共的帮助说明：
+ *   考虑采用和原理相同的方式，唯一不同的是需要区分出目前使用的是帮助。
  *
  * @param  string  $id     page ID (needs to be resolved and cleaned)
  * @param  string  $user   Username
@@ -491,7 +496,16 @@ function auth_aclcheck($id,$user,$groups){
     global $conf;
     global $AUTH_ACL;
     global $auth;
-
+   
+    if($_SERVER['WIKI_DOMAIN']=='wiki') { /*FIXME：这里应该提供方法判断来源*/
+      $tmp=explode(':',$id);
+      $area=$tmp[0];
+      if (in_array($area, $_SESSION['wiki']['doku']['manage-area'])) return AUTH_DELETE;
+      if (in_array($area, $_SESSION['wiki']['doku']['write-area'])) return AUTH_UPLOAD;
+      if (in_array($area, $_SESSION['wiki']['doku']['read-area'])) return AUTH_READ;
+      return AUTH_NONE;
+    }  
+        
     // if no ACL is used always return upload rights
     if(!$conf['useacl']) return AUTH_UPLOAD;
     if (!$auth) return AUTH_NONE;
