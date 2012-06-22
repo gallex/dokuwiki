@@ -497,15 +497,17 @@ function auth_aclcheck($id,$user,$groups){
     global $AUTH_ACL;
     global $auth;
    
-    if($_SERVER['WIKI_DOMAIN']=='wiki') { /*FIXME：这里应该提供方法判断来源*/
+    if($_SERVER['WIKI_DOMAIN']=='wiki') {
       $tmp=explode(':',$id);
       $area=$tmp[0];
       if (in_array($area, $_SESSION['wiki']['doku']['manage-area'])) return AUTH_DELETE;
       if (in_array($area, $_SESSION['wiki']['doku']['write-area'])) return AUTH_UPLOAD;
       if (in_array($area, $_SESSION['wiki']['doku']['read-area'])) return AUTH_READ;
       return AUTH_NONE;
+    }else{
+      return AUTH_UPLOAD;
     }  
-        
+    
     // if no ACL is used always return upload rights
     if(!$conf['useacl']) return AUTH_UPLOAD;
     if (!$auth) return AUTH_NONE;
