@@ -9,12 +9,7 @@ if ( !isset($_SESSION['CurrentUser']) || ($_SESSION['CurrentUser']=='') ) {
 	$this->_redirect("/error/relogin/type/$ajax");
 }	
 $CurrentUser=$_SESSION['CurrentUser'];
-$path=$CurrentUser->getStorageBase().'wiki/'.$CurrentUser->eid;
-if (!file_exists($path)) {
-	require_once(GAF_DIR.'/lib/FileDirUtil.php');
-	FileDirUtil::createDir($path);
-	FileDirUtil::createDir($path.'/pages');
-}
+$path=$CurrentUser->getStorageBase().'wiki/';
 
 switch($_SERVER['WIKI_DOMAIN']) {
 	case 'wiki':
@@ -25,7 +20,7 @@ switch($_SERVER['WIKI_DOMAIN']) {
 		break;
 	case 'wiki_help':
 		$conf['savedir']	= ECP_DIR.'/wiki';
-		$conf['template'] = 'ecp_odt';
+		$conf['template'] = 'osPyramid';
 		$conf['useacl']   = 1;         
 		$conf['authtype'] = 'ecp_odt';      //which authentication backend should be used
 		break;
@@ -34,5 +29,4 @@ switch($_SERVER['WIKI_DOMAIN']) {
 //$conf['superuser']   = 'admin';  
 $conf['useacl']   = 1;         
 $conf['authtype'] = 'ecp';          //which authentication backend should be used
-
 $conf['lang']     = 'zh'; 
