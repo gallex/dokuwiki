@@ -1,9 +1,31 @@
 <?php
+/* 此配置文件要求配置nginx(或其他web-server)的变量：
+   $_SERVER['ECP_INSTALL'],
+   $_SERVER['WIKI_DOMAIN'],
+   例如：
+    location /extralib/ { alias   /opt/extralib/; }
+    location /extralib/dokuhelp { alias   /opt/extralib/dokuwiki; }
+    
+    location ~ /extralib/dokuwiki/(.+)\.php$ {
+          fastcgi_pass   127.0.0.1:9000;
+          include fastcgi_params;
+          fastcgi_param  WIKI_DOMAIN  wiki;
+          fastcgi_param  ECP_INSTALL  /var/www/ECP;
+          fastcgi_param  SCRIPT_FILENAME  /opt/extralib/dokuwiki/$1.php;
+    }
 
-require_once('/var/ECP/config.gaf.php');
-require_once(ECP_DIR.'/lib/Teller.php');
+    location ~ /extralib/dokuhelp/(.+)\.php$ {
+           fastcgi_pass   127.0.0.1:9000;
+           include fastcgi_params;
+           fastcgi_param  WIKI_DOMAIN  wiki_help;
+           fastcgi_param  ECP_INSTALL  /var/www/ECP;
+           fastcgi_param  SCRIPT_FILENAME  /opt/extralib/dokuwiki/$1.php;
+    }
+ */
+require_once($_SERVER['ECP_INSTALL'].'/config.gaf.php');
 error_reporting(0);
 
+require_once(ECP_DIR.'/lib/Teller.php');
 if (!isset($_SESSION)) session_start();
 if ( !isset($_SESSION['CurrentUser']) || ($_SESSION['CurrentUser']=='') ) {
 	$this->_redirect("/error/relogin/type/$ajax");
