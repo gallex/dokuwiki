@@ -36,22 +36,32 @@ class syntax_plugin_netfile extends DokuWiki_Syntax_Plugin {
 			$file=trim($file);
 			if (empty($title)) $title=$file;
 			else $title=trim($title);
-		
+			
+			$farr=explode('.',$file);
+			if (count($farr)<=1) $ext='';
+			else $ext=strtolower($farr[count($farr)-1]);
+
+			$out='';		
 			switch(strtolower(trim($oper))) {
+				case 'preview':
+						$class = preg_replace('/[^_\-a-z0-9]+/i','_',$ext);
+						$out.="<a class='media mediafile mf_$class wikilink' href='/netfile/index/downfile?f=".urlencode($file)."' title='下载文件'>$title</a>";
+						$out.="<img style='vertical-align:middle;padding-right:2px' src='/img/netfile/netdisk_view.gif' title='预览' onclick='parent.preview(\"$file\")'>";
+						/*cross down*/
+						break;
 				case 'download':
 				default:
-					$farr=explode('.',$file);
-					if (count($farr)<=1) $ext='';
-					else $ext=strtolower($farr[count($farr)-1]);
-					
 					//if ($ext=='' || empty($this->icons[$ext])) $icon='/gaf/img/filetype/folder.gif';
 					//else $icon=$this->icons[$ext];
 					//$out="<img style='vertical-align:middle;padding-right:2px' src='$icon'>";
 					//$out.="<a href='/netfile/index/downfile?f=".urlencode($file)."'>$title</a>";
 					
 					$class = preg_replace('/[^_\-a-z0-9]+/i','_',$ext);
-					$out.="<a class='media mediafile mf_$class wikilink' href='/netfile/index/downfile?f=".urlencode($file)."'>$title</a>";
+					$out.="<a class='media mediafile mf_$class wikilink' href='/netfile/index/downfile?f=".urlencode($file)."' title='下载文件'>$title</a>";
 					break;
+				case 'open':
+					 $out.="<a class='wikilink' href='#' onclick='parent.showNetfileDir(\"$file\")' title='打开此文件夹'><img style='vertical-align:middle;padding-right:2px' src='/img/wiki/nf.gif'>$title</a>";
+				   break;
 			}		
 			$renderer->doc .= $out;
 		}
