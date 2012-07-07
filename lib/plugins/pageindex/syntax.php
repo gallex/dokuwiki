@@ -16,7 +16,6 @@ if(!defined('DOKU_PLUGIN')) {
 
 require_once(DOKU_PLUGIN.'syntax.php');
 require_once(DOKU_INC.'inc/search.php');
-require_once(GAF_DIR.'/lib/debug.php');
 
 function search_list_index(&$data,$base,$file,$type,$lvl,$opts){
 	global $ID;
@@ -91,7 +90,6 @@ class syntax_plugin_pageindex extends DokuWiki_Syntax_Plugin {
 	 * Handle the match
 	 */
 	function handle($match, $state, $pos, &$handler){
-		debug::info($match);
 		$match = preg_replace("%~~PAGEINDEX(=(.*))?~~%", "\\2", $match);
 		return $match;
 	}
@@ -111,8 +109,6 @@ class syntax_plugin_pageindex extends DokuWiki_Syntax_Plugin {
 	function _pageindex(&$renderer, $data) {
 		global $conf;
 		global $ID;
-		
-		debug::info('input=',$data,' ID=', $ID);
 		$parameters = split(';', $data);
 		$ns  = cleanID(getNS("$parameters[0]:dummy"));
 

@@ -526,13 +526,16 @@ function auth_aclcheck($id, $user, $groups) {
     global $AUTH_ACL;
     /* @var auth_basic $auth */
     global $auth;
-   
-    if($_SERVER['WIKI_DOMAIN']=='wiki') {
+    /* @var AreaList of ECP */
+    global $AreaList;
+    
+    //return  AUTH_ADMIN;
+    if ($_SERVER['WIKI_DOMAIN']=='wiki') {
       $tmp=explode(':',$id);
       $area=$tmp[0];
-      if (in_array($area, $_SESSION['wiki']['doku']['manage-area'])) return AUTH_DELETE;
-      if (in_array($area, $_SESSION['wiki']['doku']['write-area'])) return AUTH_UPLOAD;
-      if (in_array($area, $_SESSION['wiki']['doku']['read-area'])) return AUTH_READ;
+      if (in_array($area, $AreaList['manage-area'])) return AUTH_DELETE;
+      if (in_array($area, $AreaList['write-area'])) return AUTH_UPLOAD;
+      if (in_array($area, $AreaList['read-area'])) return AUTH_READ;
       return AUTH_NONE;
     }else{
       return AUTH_UPLOAD;
