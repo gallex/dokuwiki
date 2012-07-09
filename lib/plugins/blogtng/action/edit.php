@@ -26,6 +26,12 @@ class action_plugin_blogtng_edit extends DokuWiki_Action_Plugin{
     }
 
     function register(&$controller) {
+        global $AreaList;
+        $tmp=explode(':',cleanID(getId()));
+        $area=$tmp[0];
+        if (!in_array($area, $AreaList['blog'])) return ;
+        if (substr(cleanID(getId()),-6)===':start') return;
+        
         $controller->register_hook('HTML_EDITFORM_OUTPUT', 'BEFORE', $this, 'handle_editform_output', array());
         $controller->register_hook('ACTION_ACT_PREPROCESS', 'BEFORE', $this, 'handle_action_act_preprocess', array('before'));
         $controller->register_hook('ACTION_ACT_PREPROCESS', 'AFTER', $this, 'handle_action_act_preprocess', array('after'));
@@ -44,13 +50,18 @@ class action_plugin_blogtng_edit extends DokuWiki_Action_Plugin{
         $pid = md5($ID);
         $this->entryhelper->load_by_pid($pid);
         $blog = $this->tools->getParam('post/blog');
-        if (!$blog) $blog = $this->entryhelper->get_blog();
-        $blogs = $this->entryhelper->get_blogs();
+        if (!$blog) {
+            $tmp=explode(':',$ID);
+            $blog=$tmp[0];
+            //$blog = $this->entryhelper->get_blog();
+        }    
+        //$blogs = $this->entryhelper->get_blogs();
 
-        $event->data->insertElement($pos, form_openfieldset(array('_legend' => 'BlogTNG', 'class' => 'edit', 'id' => 'blogtng__edit')));
+        $event->data->insertElement($pos, form_openfieldset(array('_legend' => '', 'class' => 'edit', 'id' => 'blogtng__edit')));
         $pos += 1;
 
-        $event->data->insertElement($pos, form_makeMenuField('btng[post][blog]', $blogs, $blog, 'Blog', 'blogtng__blog', 'edit'));
+        //$event->data->insertElement($pos, form_makeMenuField('btng[post][blog]', $blogs, $blog, '日志', 'blogtng__blog', 'edit'));
+        $event->data->insertElement($pos, form_makeTextField('btng[post][blog]', $blog, '', 'blogtng__blog', 'edit', array('style'=>'display:none')));
         $pos += 1;
 
         $this->taghelper->load($pid);
@@ -66,7 +77,7 @@ class action_plugin_blogtng_edit extends DokuWiki_Action_Plugin{
             }
             $event->data->insertElement($pos++, form_makeCloseTag('div'));
         } else {
-            $event->data->insertElement($pos, form_makeTextField('btng[post][tags]', join(', ', $tags), 'Tags', 'blogtng__tags', 'edit'));
+            $event->data->insertElement($pos, form_makeTextField('btng[post][tags]', join(', ', $tags), '标签', 'blogtng__tags', 'edit'));
             $pos += 1;
         }
 
@@ -140,8 +151,9 @@ class action_plugin_blogtng_edit extends DokuWiki_Action_Plugin{
                 if(!page_exists($ID)) return;
 
                 $blog = $this->tools->getParam('post/blog');
-                $blogs = $this->entryhelper->get_blogs();
-                if (!in_array($blog, $blogs)) $blog = null;
+                // COMMENT BY LG: 容许任何blog分类
+                //$blogs = $this->entryhelper->get_blogs();
+                //if (!in_array($blog, $blogs)) $blog = null;
 
                 $pid = md5($ID);
 

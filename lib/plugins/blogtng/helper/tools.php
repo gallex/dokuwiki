@@ -90,8 +90,9 @@ class helper_plugin_blogtng_tools extends DokuWiki_Plugin {
         }
 
         if($res === false){
-            msg("blogtng plugin: template file $type for template $tpl does not exist!", -1);
-            return false;
+	        //msg("blogtng plugin: template file $type for template $tpl does not exist!", -1);
+	        //use default template file
+	        $res = DOKU_PLUGIN . "blogtng/tpl/default/$type.php";
         }
 
         return $res;
