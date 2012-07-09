@@ -23,14 +23,23 @@
     }
  */
 require_once($_SERVER['ECP_INSTALL'].'/config.gaf.php');
+require_once(ECP_DIR.'/lib/Teller.php');
+error_reporting(E_ALL);
 error_reporting(0);
 
-require_once(ECP_DIR.'/lib/Teller.php');
 if (!isset($_SESSION)) session_start();
 if ( !isset($_SESSION['CurrentUser']) || ($_SESSION['CurrentUser']=='') ) {
 	$this->_redirect("/error/relogin/type/$ajax");
 }	
 $CurrentUser=$_SESSION['CurrentUser'];
+$AreaList=$_SESSION['wiki']['doku']['arealist'];
+session_write_close();
+
+if (empty($AreaList)) {
+	$url="http://{$_SERVER["HTTP_HOST"]}/wiki/api/get-area-list?sid=".session_id();
+	$AreaList=json_decode(file_get_contents($url));
+}
+
 $path=$CurrentUser->getStorageBase().'wiki/';
 
 switch($_SERVER['WIKI_DOMAIN']) {
