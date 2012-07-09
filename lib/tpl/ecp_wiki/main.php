@@ -40,8 +40,9 @@ if (!defined('DOKU_INC')) die();
 
   <div class="stylehead">
 
-    <?php /*old includehook*/ @include(dirname(__FILE__).'/header.html')?>
+    
 
+   
     <div class="bar" id="bar__top">
       <div class="bar-left" id="bar__topleft">
         <?php tpl_button('edit')?>
@@ -95,9 +96,7 @@ if (!defined('DOKU_INC')) die();
       </div>
     </div>
 
-  </div>
 </div>
-
 <div class="no"><?php /* provide DokuWiki housekeeping, required in all templates */ tpl_indexerWebBug()?></div>
 </body>
 </html>
