@@ -31,7 +31,7 @@ class syntax_plugin_netfile extends DokuWiki_Syntax_Plugin {
 	function render($mode, &$renderer, $data) {
 		global $conf;
 		if ($mode == 'xhtml') {
-			list($file,$title,$oper) = explode('|',substr($data,11,strlen($data)-13));
+			list($file,$oper,$title) = explode('|',substr($data,11,strlen($data)-13));
 		
 			$file=trim($file);
 			if (empty($title)) $title=$file;
