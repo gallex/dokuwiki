@@ -37,17 +37,18 @@ if (!defined('DOKU_INC')) die();
 <?php /*old includehook*/ @include(dirname(__FILE__).'/topheader.html')?>
 <div class="dokuwiki">
   <?php html_msgarea()?>
-
   <div class="stylehead">
-
-    
-
-   
     <div class="bar" id="bar__top">
-      <div class="bar-left" id="bar__topleft">
-        <?php tpl_button('edit')?>
-        <?php tpl_button('history')?>
-      </div>
+		<div id="dokuwiki__pagetools" class="bar-left">
+		<ul>
+			<?php 
+				tpl_action('edit', 1, 'li', 0, '<span>', '</span>'); 
+            tpl_action('revisions', 1, 'li', 0, '<span>', '</span>');
+         ?>
+         <li><a class="action newitem" href="javascript:void(0)" onclick="parent.create_item()" title="新建条目"></a>
+         </li>
+		</ul>
+		</div> 
 
       <div class="bar-right" id="bar__topright">
         <?php tpl_button('recent')?>

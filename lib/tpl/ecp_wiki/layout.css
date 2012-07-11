@@ -41,11 +41,12 @@ div.dokuwiki .logo a {
 
 /* ---------------  top and bottom bar ---------------- */
 div.dokuwiki .bar {
-  border-top: 1px solid __border__;
-  border-bottom: 1px solid __border__;
-  background: __background_alt__;
-  padding: 0.1em 0.15em;
-  clear: both;
+	display:block;
+	background:#E9F4F9 url(/pub/img/main/bg_main_h.png) repeat-x 0px -145px;
+	height:28px;
+	line-height:28px;
+	overflow:hidden;
+	padding-left:5px;
 }
 
 div.dokuwiki .bar-left {
@@ -60,6 +61,62 @@ div.dokuwiki .bar-right {
 div.dokuwiki #bar__bottom {
   margin-bottom: 3px;
 }
+
+#dokuwiki__pagetools ul{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+#dokuwiki__pagetools ul li {display: inline; }
+
+#dokuwiki__pagetools ul li a span{
+	clip:rect(0px,0px,0px,0px);
+	position:absolute;
+}
+
+a.action, #dokuwiki__pagetools .spliter{
+	background:url(/img/wiki/icon_toolsbar.png) no-repeat 0px -1px;
+	width:25px;
+	height:26px;
+	overflow:hidden;
+	float:left;
+	display:inline-block;
+	outline: none 
+}
+a.edit:hover{
+	background-position:0px -31px;
+}
+a.edit:active{
+	background-position:0px -61px;
+}
+
+a.show:hover{
+	background-position:0px -31px;
+}
+a.show:active{
+	background-position:0px -61px;
+}
+
+a.revs{
+	background-position:0px -1px;
+}
+a.revs:hover{
+	background-position:0px -31px;
+}
+a.revs:active{
+	background-position:0px -61px;
+}
+
+a.newitem {
+	background-position:-25px -1px;
+}
+a.newitem:hover{
+	background-position:-25px -31px;
+}
+a.newitem:active{
+	background-position:-25px -61px;
+}
+
 
 /* ------------- File Metadata ----------------------- */
 
