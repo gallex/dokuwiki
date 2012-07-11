@@ -136,7 +136,7 @@ if ($conf['gzip_output'] &&
 }
 
 // init session
-if (!headers_sent() && !defined('NOSESSION')){
+/*if (!headers_sent() && !defined('NOSESSION')){
     session_name("DokuWiki");
     $cookieDir = empty($conf['cookiedir']) ? DOKU_REL : $conf['cookiedir'];
     if (version_compare(PHP_VERSION, '5.2.0', '>')) {
@@ -151,7 +151,7 @@ if (!headers_sent() && !defined('NOSESSION')){
         $MSG = $_SESSION[DOKU_COOKIE]['msg'];
         unset($_SESSION[DOKU_COOKIE]['msg']);
     }
-}
+}*/
 
 // kill magic quotes
 if (get_magic_quotes_gpc() && !defined('MAGIC_QUOTES_STRIPPED')) {
