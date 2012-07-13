@@ -47,6 +47,9 @@ if (!defined('DOKU_INC')) die();
          ?>
          <li><a class="action newitem" href="javascript:void(0)" onclick="parent.create_item()" title="新建条目"></a>
          </li>
+         <li><a class="action classmng" href="javascript:void(0)" onclick="parent.mngclass()" title="分类管理"></a>
+         </li>
+
 		</ul>
 		</div> 
 

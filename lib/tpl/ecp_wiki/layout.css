@@ -117,6 +117,15 @@ a.newitem:active{
 	background-position:-25px -61px;
 }
 
+a.classmng {
+	background-position:-25px -1px;
+}
+a.classmng:hover{
+	background-position:-25px -31px;
+}
+a.classmng:active{
+	background-position:-25px -61px;
+}
 
 /* ------------- File Metadata ----------------------- */
 
