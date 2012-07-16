@@ -136,22 +136,22 @@ if ($conf['gzip_output'] &&
 }
 
 // init session
-/*if (!headers_sent() && !defined('NOSESSION')){
-    session_name("DokuWiki");
+//if (!headers_sent() && !defined('NOSESSION')){
+    /*session_name("DokuWiki");
     $cookieDir = empty($conf['cookiedir']) ? DOKU_REL : $conf['cookiedir'];
     if (version_compare(PHP_VERSION, '5.2.0', '>')) {
         session_set_cookie_params(0,$cookieDir,'',($conf['securecookie'] && is_ssl()),true);
     }else{
         session_set_cookie_params(0,$cookieDir,'',($conf['securecookie'] && is_ssl()));
     }
-    session_start();
+    session_start();*/
 
     // load left over messages
     if(isset($_SESSION[DOKU_COOKIE]['msg'])){
         $MSG = $_SESSION[DOKU_COOKIE]['msg'];
         unset($_SESSION[DOKU_COOKIE]['msg']);
     }
-}*/
+//}
 
 // kill magic quotes
 if (get_magic_quotes_gpc() && !defined('MAGIC_QUOTES_STRIPPED')) {

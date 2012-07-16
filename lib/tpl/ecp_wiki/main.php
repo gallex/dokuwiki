@@ -14,8 +14,9 @@
 
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
-
+global $ID;
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang']?>"
@@ -31,6 +32,11 @@ if (!defined('DOKU_INC')) die();
   <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
 
   <?php /*old includehook*/ @include(dirname(__FILE__).'/meta.html')?>
+  
+	<script type="text/javascript">
+	var ID='<?php echo $ID ?>';
+	var NS='<?php echo getNS($ID); ?>';
+	</script> 
 </head>
 
 <body>
@@ -45,9 +51,9 @@ if (!defined('DOKU_INC')) die();
 				tpl_action('edit', 1, 'li', 0, '<span>', '</span>'); 
             tpl_action('revisions', 1, 'li', 0, '<span>', '</span>');
          ?>
-         <li><a class="action newitem" href="javascript:void(0)" onclick="parent.create_item()" title="新建条目"></a>
+         <li><a class="action newitem" href="javascript:void(0)" onclick="parent.create_item(NS)" title="新建条目"></a>
          </li>
-         <li><a class="action classmng" href="javascript:void(0)" onclick="parent.mngclass()" title="分类管理"></a>
+         <li><a class="action classmng" href="javascript:void(0)" onclick="parent.mngclass(NS)" title="分类管理"></a>
          </li>
 
 		</ul>
