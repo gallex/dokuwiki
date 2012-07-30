@@ -83,48 +83,66 @@ a.action, #dokuwiki__pagetools .spliter{
 	display:inline-block;
 	outline: none 
 }
+
+a.edit{
+	background-position:-201px -1px
+}
+
 a.edit:hover{
-	background-position:0px -31px;
+	background-position:-201px -31px;
 }
 a.edit:active{
-	background-position:0px -61px;
+	background-position:-201px -61px;
+}
+a.show{
+	background-position:-226px -1px
 }
 
 a.show:hover{
-	background-position:0px -31px;
+	background-position:-226px -31px;
 }
 a.show:active{
-	background-position:0px -61px;
+	background-position:-226px -61px;
 }
 
 a.revs{
-	background-position:0px -1px;
+	background-position:-251px -1px;
 }
 a.revs:hover{
-	background-position:0px -31px;
+	background-position:-251px -31px;
 }
 a.revs:active{
-	background-position:0px -61px;
+	background-position:-251px -61px;
+}
+
+a.create{
+	background-position:-351px -1px;
+}
+a.create:hover{
+	background-position:-351px -31px;
+}
+a.create:active{
+	background-position:-351px -61px;
 }
 
 a.newitem {
-	background-position:-25px -1px;
+	background-position:-50px -1px;
 }
 a.newitem:hover{
-	background-position:-25px -31px;
+	background-position:-50px -31px;
 }
 a.newitem:active{
-	background-position:-25px -61px;
+	background-position:-50px -61px;
 }
 
 a.classmng {
-	background-position:-25px -1px;
+	background-position:-276px -1px;
 }
 a.classmng:hover{
-	background-position:-25px -31px;
+	background-position:-276px -31px;
 }
 a.classmng:active{
-	background-position:-25px -61px;
+	background-position:-276px -61px;
 }
 
 /* ------------- File Metadata ----------------------- */
