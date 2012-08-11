@@ -33,9 +33,9 @@ if ( !isset($_SESSION['CurrentUser']) || ($_SESSION['CurrentUser']=='') ) {
 }	
 $CurrentUser=$_SESSION['CurrentUser'];
 $AreaList=$_SESSION['wiki']['doku']['arealist'];
-session_write_close();
 
 if (empty($AreaList)) {
+	session_write_close();
 	$url="http://{$_SERVER["HTTP_HOST"]}/wiki/api/get-area-list?sid=".session_id();
 	$AreaList=json_decode(file_get_contents($url));
 }
