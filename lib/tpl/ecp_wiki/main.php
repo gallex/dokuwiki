@@ -49,7 +49,7 @@ global $ID;
 		<ul>
 			<li><a class="action btn_back" href="javascript:void(0)" onclick="history.go(-1)" title="返回前一个条目"></a></li>
 			<li><a class="action btn_forward" href="javascript:void(0)" onclick="window.history.forward()" title="下一个"></a></li>
-			<li><a class="action btn_viewmode_2" href="javascript:void(0)" onclick="if (parent) parent.show_item(ID)" title="新标签中打开"></a></li>
+			<li><a class="action btn_max" href="javascript:void(0)" onclick="if (parent) parent.show_item(ID)" title="新标签中打开"></a></li>
 			
 			<li class='spliter'/></li>
 			

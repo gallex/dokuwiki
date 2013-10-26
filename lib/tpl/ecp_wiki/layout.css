@@ -190,6 +190,16 @@ a.btn_forward:active{
 	background-position:-401px -61px;
 }
 
+a.btn_max {
+	background-position:-426px -1px;
+}
+a.btn_max:hover{
+	background-position:-426px -31px;
+}
+a.btn_max:active{
+	background-position:-426px -61px;
+}
+
 /* ------------- File Metadata ----------------------- */
 
 div.dokuwiki div.meta {
