@@ -47,25 +47,34 @@ global $ID;
     <div class="bar" id="bar__top">
 		<div id="dokuwiki__pagetools" class="bar-left">
 		<ul>
+			<li><a class="action btn_back" href="javascript:void(0)" onclick="history.go(-1)" title="返回前一个条目"></a></li>
+			<li><a class="action btn_forward" href="javascript:void(0)" onclick="window.history.forward()" title="下一个"></a></li>
+			<li><a class="action btn_viewmode_2" href="javascript:void(0)" onclick="if (parent) parent.show_item(ID)" title="新标签中打开"></a></li>
+			
+			<li class='spliter'/></li>
+			
 			<?php 
 				tpl_action('edit', 1, 'li', 0, '<span>', '</span>'); 
-            tpl_action('revisions', 1, 'li', 0, '<span>', '</span>');
-         ?>
-         <li><a class="action newitem" href="javascript:void(0)" onclick="parent.create_item(NS)" title="新建条目"></a>
-         </li>
-         <li><a class="action classmng" href="javascript:void(0)" onclick="parent.mngclass(NS)" title="分类管理"></a>
-         </li>
-
+				tpl_action('revisions', 1, 'li', 0, '<span>', '</span>');
+			?>
+			
+			<li class='spliter'/></li>
+			
+			<li><a class="action newitem" href="javascript:void(0)" onclick="parent.create_item(NS)" title="新建条目"></a></li>
+			<li><a class="action classmng" href="javascript:void(0)" onclick="parent.mngclass(NS)" title="分类管理"></a></li>
+			<li class='spliter'/></li>
+			
+			<li><span class='title-text'><?php echo $ID ?></span></li>
 		</ul>
-		</div> 
+	</div> 
 
-      <div class="bar-right" id="bar__topright">
-        <?php tpl_button('recent')?>
-        <?php tpl_searchform()?>&nbsp;
-      </div>
+	<div class="bar-right" id="bar__topright">
+		<?php tpl_button('recent')?>
+		<?php tpl_searchform()?>&nbsp;
+	</div>
 
-      <div class="clearer"></div>
-    </div>
+	<div class="clearer"></div>
+  </div>
 
     <?php if($conf['breadcrumbs']){?>
     <div class="breadcrumbs">
