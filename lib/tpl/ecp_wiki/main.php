@@ -15,6 +15,11 @@
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 global $ID;
+global $ACT;
+/*if ($ACT=='edit') {
+	include(ECP_DIR.'/app/modules/wiki/doku/editor.phtml');
+	die();
+}*/	
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -41,6 +46,7 @@ global $ID;
 
 <body>
 <?php /*old includehook*/ @include(dirname(__FILE__).'/topheader.html')?>
+
 <div class="dokuwiki">
   <?php html_msgarea()?>
   <div class="stylehead">
