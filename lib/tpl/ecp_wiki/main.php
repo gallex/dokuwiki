@@ -16,6 +16,7 @@
 if (!defined('DOKU_INC')) die();
 global $ID;
 global $ACT;
+global $TEXT;
 /*if ($ACT=='edit') {
 	include(ECP_DIR.'/app/modules/wiki/doku/editor.phtml');
 	die();
@@ -46,7 +47,14 @@ global $ACT;
 
 <body>
 <?php /*old includehook*/ @include(dirname(__FILE__).'/topheader.html')?>
-
+<?php 
+	/*if ($ACT=='preview') {
+		echo "<div class='dokuwiki'>";
+		html_show($TEXT); 
+		echo "</div></body></html>";
+		die(); 
+	}*/
+?>
 <div class="dokuwiki">
   <?php html_msgarea()?>
   <div class="stylehead">

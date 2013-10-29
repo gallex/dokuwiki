@@ -204,7 +204,7 @@ a.btn_max:active{
 
 div.dokuwiki div.meta {
   clear: both;
-  margin-top: 1em;
+  /*margin-top: 1em;*/
   color: __text_alt__;
   font-size: 70%;
 }
