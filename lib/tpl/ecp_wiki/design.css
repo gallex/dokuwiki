@@ -207,6 +207,7 @@ div.dokuwiki button.button {
   margin: 0px;
   /*padding: 0.125em 0.4em;*/
   padding: 0 4px;
+  font-family: arial,tahoma,'宋体','lucida grande','lucida sans unicode',verdana,sans-serif;
 }
 
 /* nice alphatransparency background except for IE <7 */

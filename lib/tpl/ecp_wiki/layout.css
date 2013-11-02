@@ -44,7 +44,7 @@ div.dokuwiki .bar {
 	display:block;
 	background:#E9F4F9 url(/pub/img/main/bg_main_h.png) repeat-x 0px -145px;
 	height:28px;
-	line-height:28px;
+	line-height:24px;
 	overflow:hidden;
 	padding-left:5px;
 }
@@ -145,6 +145,26 @@ a.newitem:hover{
 }
 a.newitem:active{
 	background-position:-50px -61px;
+}
+
+a.btn_edit1 {
+	background-position:-451px -1px;
+}
+a.btn_edit1:hover{
+	background-position:-451px -31px;
+}
+a.btn_edit1:active{
+	background-position:-451px -61px;
+}
+
+a.btn_edit2 {
+	background-position:-476px -1px;
+}
+a.btn_edit2:hover{
+	background-position:-476px -31px;
+}
+a.btn_edit2:active{
+	background-position:-476px -61px;
 }
 
 a.classmng {

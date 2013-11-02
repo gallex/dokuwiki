@@ -61,14 +61,26 @@ global $TEXT;
     <div class="bar" id="bar__top">
 		<div id="dokuwiki__pagetools" class="bar-left">
 		<ul>
+			<script>
+			function set_dw_edit() {
+    	        document.cookie = 'FCKW_USE=_false_;';  
+    	        window.location.href='?id='+ID+'&do=edit';  
+    	    }
+    	    function set_fck_edit() {
+				document.cookie='FCKW_USE=other;expires=Thu,01-Jan-70 00:00:01 GMT;'
+				window.location.href='?id='+ID+'&do=edit'; 
+    	    }		
+    	    </script>
 			<li><a class="action btn_back" href="javascript:void(0)" onclick="history.go(-1)" title="返回前一个条目"></a></li>
 			<li><a class="action btn_forward" href="javascript:void(0)" onclick="window.history.forward()" title="下一个"></a></li>
 			<li><a class="action btn_max" href="javascript:void(0)" onclick="if (parent) parent.show_item(ID)" title="新标签中打开"></a></li>
 			
 			<li class='spliter'/></li>
-			
+			<?php if ($ACT!='edit') { ?>
+	            <li><a class="action btn_edit2" href="javascript:void(0)" onclick="set_fck_edit()" title="所见即所得方式修改"></a></li>	
+   				<li><a class="action btn_edit1" href="javascript:void(0)" onclick="set_dw_edit()" title="文本方式修改"></a></li>			
+            <?php }else tpl_action('edit', 1, 'li', 0, '<span>', '</span>');  ?>
 			<?php 
-				tpl_action('edit', 1, 'li', 0, '<span>', '</span>'); 
 				tpl_action('revisions', 1, 'li', 0, '<span>', '</span>');
 			?>
 			
