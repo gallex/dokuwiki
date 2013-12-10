@@ -24,7 +24,7 @@
  */
 require_once($_SERVER['ECP_INSTALL'].'/config.gaf.php');
 require_once(ECP_DIR.'/lib/Teller.php');
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 error_reporting(0);
 
 if (!isset($_SESSION)) session_start();
@@ -33,16 +33,14 @@ if ( !isset($_SESSION['CurrentUser']) || ($_SESSION['CurrentUser']=='') ) {
 }	
 $_SESSION['ecp']['idle']=0; /* reset IDEL timer*/
 $CurrentUser=$_SESSION['CurrentUser'];
-$AreaList=$_SESSION['wiki']['doku']['arealist'];
 
-if (empty($AreaList)) {
+if (!isset($_SESSION['wiki']) || !isset($_SESSION['wiki']['doku']) || !isset($_SESSION['wiki']['doku']['arealist'])) {
 	session_write_close();
 	$url="http://{$_SERVER["HTTP_HOST"]}/wiki/api/get-area-list?sid=".session_id();
-	$AreaList=json_decode(file_get_contents($url));
-}
+	$AreaList=json_decode(file_get_contents($url), true);
+}else $AreaList=$_SESSION['wiki']['doku']['arealist'];
 
 $path=$CurrentUser->getStorageBase().'wiki/';
-
 switch($_SERVER['WIKI_DOMAIN']) {
 	case 'wiki':
 		$conf['savedir']	=$path;
@@ -56,7 +54,9 @@ switch($_SERVER['WIKI_DOMAIN']) {
 		$conf['useacl']   = 1;         
 		$conf['authtype'] = 'ecp_odt';      //which authentication backend should be used
 		break;
-}		
+}
+if (preg_match("/Mobile/", $_SERVER["HTTP_USER_AGENT"])) $conf['template'] = 'mobile';
+$conf['license']=false;	
 	
 //$conf['superuser']   = 'admin';  
 $conf['useacl']   = 1;         
